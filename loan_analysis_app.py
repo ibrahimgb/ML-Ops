@@ -1,9 +1,8 @@
 import streamlit as st
 import pickle
-import sklearn
 import numpy as np
 
-
+# Load the trained model
 model = pickle.load(open("model.pkl", "rb"))
 
 # Title of the app
@@ -25,10 +24,7 @@ if st.button("Analyze"):
     prediction = model.predict(model_input)
     print("Prediction:", prediction)  # Debugging: Print the prediction result
     
-    if (prediction == 1):
+    if prediction == 1:
         st.markdown("<h2 style='color: red;'>High risk of not paying loan</h2>", unsafe_allow_html=True)
-    if (prediction == 0):
-        st.markdown("<h2 style='color: red;'>Not a risk of missing paying loan</h2>", unsafe_allow_html=True)
-
-    # Show the risk message with red alerting text
-    
+    elif prediction == 0:
+        st.markdown("<h2 style='color: green;'>Not a risk of missing loan payment</h2>", unsafe_allow_html=True)
