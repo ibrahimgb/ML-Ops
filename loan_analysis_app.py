@@ -1,9 +1,13 @@
 import streamlit as st
 import pickle
-# Title of the app
-st.title("Loan Risk Analysis")
+import sklearn
+import numpy as np
+
 
 model = pickle.load(open("model.pkl", "rb"))
+
+# Title of the app
+st.title("Loan Risk Analysis")
 
 # Input fields for user to provide parameters
 credit_lines_outstanding = st.number_input("Credit Lines Outstanding", min_value=0, format="%d")
@@ -20,14 +24,11 @@ if st.button("Analyze"):
 
     prediction = model.predict(model_input)
     print("Prediction:", prediction)  # Debugging: Print the prediction result
-    # Display the input data
-    st.write("### Input Data:")
-    st.write(f"Credit Lines Outstanding: {credit_lines_outstanding}")
-    st.write(f"Loan Amount Outstanding: {loan_amt_outstanding}")
-    st.write(f"Total Debt Outstanding: {total_debt_outstanding}")
-    st.write(f"Income: {income}")
-    st.write(f"Years Employed: {years_employed}")
-    st.write(f"FICO Score: {fico_score}")
+    
+    if (prediction == 1):
+        st.markdown("<h2 style='color: red;'>High risk of not paying loan</h2>", unsafe_allow_html=True)
+    if (prediction == 0):
+        st.markdown("<h2 style='color: red;'>Not a risk of missing paying loan</h2>", unsafe_allow_html=True)
 
     # Show the risk message with red alerting text
-    st.markdown("<h2 style='color: red;'>High risk of not paying loan</h2>", unsafe_allow_html=True)
+    
