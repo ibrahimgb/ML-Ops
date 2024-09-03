@@ -1,6 +1,6 @@
-import streamlit as st
+import streamlit as st # type: ignore
 import pickle
-import numpy as np
+import numpy as np # type: ignore
 
 # Load the trained model
 model = pickle.load(open("model.pkl", "rb"))
