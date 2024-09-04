@@ -1,14 +1,14 @@
 FROM python:3.9-slim
 
-# Working Directory
+# Set the working directory
 WORKDIR /
 
-# Copy source code to working directory
-COPY . loan_analysis_app.py /app/
+# Copy source code to the working directory
+COPY . /
 
 # Install packages from requirements.txt
-
-RUN pip install --no-cache-dir --upgrade pip &&\
+RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
-CMD python loan_analysis_app.py
+# Command to run your Streamlit application
+CMD ["streamlit", "run", "loan_analysis_app.py", "--server.port=80", "--server.address=0.0.0.0"]
