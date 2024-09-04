@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # Working Directory
-WORKDIR /app
+WORKDIR /
 
 # Copy source code to working directory
 COPY . loan_analysis_app.py /app/
