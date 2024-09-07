@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
 # Command to run your Streamlit application
-CMD ["streamlit", "run", "loan_analysis_app.py", "--server.port=5000", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "loan_analysis_app.py", "--server.port=80", "--server.address=0.0.0.0"]
