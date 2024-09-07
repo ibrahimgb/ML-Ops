@@ -77,7 +77,7 @@ jobs:
           uses: azure/container-apps-deploy-action@v1
           with:
             appSourcePath: ${{ github.workspace }}
-            acrName: PredictiveMaintenance
+            acrName: loan-analysis-app
             containerAppName: loan-analysis-app
-            resourceGroup: SDA_ML_proj
+            resourceGroup: ML-OPS
             dockerfile: ${{ github.workspace }}/Dockerfile 
