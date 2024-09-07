@@ -12,10 +12,10 @@ env:
 on:
   push:
     branches:
-    - main
+    - deploy
   pull_request:
     branches:
-    - main
+    - deploy
 
 # this pipeline consists of a two jobs named ci_pipeline
 
@@ -80,3 +80,4 @@ jobs:
             acrName: PredictiveMaintenance
             containerAppName: loan-analysis-app
             resourceGroup: SDA_ML_proj
+            dockerfile: ${{ github.workspace }}/Dockerfile 
