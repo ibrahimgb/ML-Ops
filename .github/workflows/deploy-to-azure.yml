@@ -73,11 +73,14 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_SERVICE_PRINCIPAL }}
 
-        - name: Build and deploy Container App
-          uses: azure/container-apps-deploy-action@v1
-          with:
-            appSourcePath: ${{ github.workspace }}
-            acrName: LoanAnalysis
-            containerAppName: loan-analysis-app
-            resourceGroup: ML-OPS
-            dockerfile: ${{ github.workspace }}/Dockerfile 
+        - name: Log in to Azure Container Registry
+          run: |
+            az acr login --name loananalysis
+
+        - name: Build Docker image
+          run: |
+            docker build -t loananalysis.azurecr.io/loan-analysis-app:latest .
+
+        - name: Push Docker image to ACR
+          run: |
+            docker push loananalysis.azurecr.io/loan-analysis-app:latest
